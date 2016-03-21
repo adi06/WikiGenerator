@@ -11,4 +11,12 @@ router.get('/', function(req, res) {
 	});
 });
 
+router.post('/', function(req, res) {
+	messages.addMessage(req.body.userId, req.body.threadId, req.body.message, 
+						function(err, msg) {
+							if (err) throw err;
+							res.json(msg);
+						});
+});
+
 module.exports = router;

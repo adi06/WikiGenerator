@@ -11,4 +11,11 @@ router.get('/', function(req, res) {
 	});
 });
 
+router.post('/', function(req, res) {
+	threads.addThreads(req.body.title, function(err, thread) {
+		if (err) throw err;
+		res.json(thread);
+	});
+});
+
 module.exports = router;
