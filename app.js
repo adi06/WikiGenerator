@@ -9,6 +9,7 @@ var routes = require('./routes/index');
 var users = require('./routes/user');
 var threads = require('./routes/thread');
 var messages = require('./routes/message');
+var wiki = require('./routes/wiki');
 
 var app = express();
 
@@ -28,6 +29,7 @@ app.use('/', routes);
 app.use('/api/users', users);
 app.use('/api/threads', threads);
 app.use('/api/messages', messages);
+app.use('/api/wiki',wiki);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
