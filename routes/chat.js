@@ -1,22 +1,19 @@
 var express = require('express');
+var path = require('path');
 var router = express.Router();
-var io = require('../io');
+var socket_io = require('../io');
 
-//TODO move to model -- using only for testing
-var MongoClient = require('mongodb').MongoClient;
-var myCollection;
-var db = MongoClient.connect('mongodb://127.0.0.1:27017/wikigenerator', function(err, db) {
-    if(err)
-        throw err;
-    console.log("connected to the mongoDB !");
-    myCollection = db.collection('messages');
+
+/* GET chat page. */
+router.get('/', function(req, res) {
+   res.sendFile(path.join(__dirname+'/../public/chat.html'));
 });
 
-
-router.get('/', function(req, res) {
-	io.emit("hi");
-	console.log("chat router");
-})
-
+socket_io.on('connection', function(socket){
+  console.log('user connected');
+  socket.on('chat msg', function(msg) {
+  	socket_io.emit('chat msg', msg);
+  });
+});
 
 module.exports = router;

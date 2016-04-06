@@ -1,10 +1,9 @@
 var io = require('socket.io')();
 
-io.on('connection', function(socket) {
-	socket.emit('news', {hello: 'world'});
-	socket.on('my other event', function(data) {
-		console.log(data);
-	});
-});
+/*io.on('connection', function(socket){
+  socket.on('chat msg', function(msg) {
+  	io.emit('chat msg', msg);
+  });
+});*/
 
 module.exports = io;
