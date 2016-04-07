@@ -1,16 +1,13 @@
+//TODO remove monk and use Mongoclient
 var monk = require('monk');
 var db = monk('localhost:27017/wikigenerator');
 var collection = db.get('messages');
 
-var MongoClient = require('mongodb').MongoClient;
+var dbCon = require('../db');
 var myCollection;
-var db = MongoClient.connect('mongodb://127.0.0.1:27017/wikigenerator', function(err, db) {
-    if(err)
-        throw err;
-    console.log("connected to the mongoDB !");
-    myCollection = db.collection('messages');
+dbCon.getConnection(function(err, db){
+	myCollection = db.collection('messages');
 });
-
 
 // select all messages from database
 exports.getMessages = function(callback){
