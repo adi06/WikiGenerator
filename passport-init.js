@@ -22,10 +22,11 @@ module.exports = function(passport){
         },
         function(req, username, password, done) {
             if(!users[username]) {
-                console.log("User with not found with username ",username);
+                console.log("User not found with username ",username);
                 return done(null, false);
             }
-            if(isValidPassword(users[username]), password) {
+
+            if(isValidPassword(users[username], password)) {
                 return done(null,users[username]);
             }
             console.log("Invalid password");
@@ -47,9 +48,8 @@ module.exports = function(passport){
             }
             console.log("Registration is successful for ",users[username].username);
             return done(null, users[username]);
-
-        })
-    );
+        }
+    ));
 
     var isValidPassword = function(user, password){
         return bCrypt.compareSync(password, user.password);

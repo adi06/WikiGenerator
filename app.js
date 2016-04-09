@@ -45,7 +45,6 @@ app.use('/api/users', users);
 app.use('/api/threads', threads);
 app.use('/api/messages', messages);
 app.use('/api/wiki',wiki);
-app.use('/api/chat',chat);
 
 
 // catch 404 and forward to error handler
