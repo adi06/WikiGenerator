@@ -15,14 +15,14 @@ module.exports = function(passport){
 
     //log in
     router.post('/login', passport.authenticate('login', {
-        successRedirect: '/auth/success',
-        failureRedirect: '/auth/failure'
+        successRedirect: '/api/chat',
+        failureRedirect: '/'
     }));
 
     //sign up
     router.post('/signup', passport.authenticate('signup', {
-        successRedirect: '/auth/success',
-        failureRedirect: '/auth/failure'
+        successRedirect: '/',
+        failureRedirect: '/'
     }));
 
     //log out
