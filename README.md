@@ -11,7 +11,7 @@
 	4. Ajax, jQuery
 	
 ## Installation Instructions
-    ### comming soon ...
+   ## The project runs on linux.
 	
 ## Features
     1. Login
@@ -28,6 +28,6 @@
     1. Aditya Vallabhajosyula
 	2. Bharadwaj AryaSomayajula
 	3. Karthik Lakshmi Narayana Sarma
-	4. Nishal Samji
+	4. Nischal Samji
 
 	
