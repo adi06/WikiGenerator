@@ -19,6 +19,8 @@ module.exports = function(passport){
         failureRedirect: '/'
     }));
 
+    router.get('/facebook', passport.authenticate('facebook'));
+
     //sign up
     router.post('/signup', passport.authenticate('signup', {
         successRedirect: '/',
