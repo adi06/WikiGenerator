@@ -5,6 +5,8 @@ var socket = io();
 var message_side;
 (function () {
     var Message;
+    var tag_value = "none";
+    var disp_like=0;
     Message = function (arg) {
         this.text = arg.text, this.message_side = arg.message_side, this.id = arg.id;
         this.draw = function (_this) {
@@ -13,7 +15,8 @@ var message_side;
 
                 $message = $($('.message_template').clone().html());
                 $message.addClass(_this.message_side).find('.text').html(_this.text);
-                $like_link = ('<a id='+_this.id+'><i class="fa fa-thumbs-up"></i><span id="count'+_this.id+'">0</span></a>');
+                $like_link = ('<a id='+_this.id+'><i class="fa fa-thumbs-up"></i><span id="count'+_this.id+'">'
+                                                                                    + disp_like +'</span></a>');
                 $like_link.id = _this.id;
                 $message.append($like_link);
                 $('.messages').append($message);
@@ -61,7 +64,8 @@ var message_side;
 
             socket.emit('input', {
                 name: "Test",
-                message: text
+                message: text,
+                tag : tag_value
             });
 
             //message.draw();
@@ -77,6 +81,7 @@ var message_side;
             }
         });
         socket.on('output', function(data){
+            $('.glyphicon-paperclip').css("background-color", "rgb(255, 255, 255)");
             if(data.length){
                 for(var x=0;x<data.length;x=x+1){
                     console.log(data[x].message);
@@ -86,6 +91,7 @@ var message_side;
                         message_side: message_side,
                         id: data[x]._id
                     });
+                    disp_like = data[x].like;
                     message.draw();
                 }
             }
@@ -102,8 +108,10 @@ var message_side;
             if(color == 'rgb(230, 230, 230)' || color == 'rgb(255, 255, 255)'){
                 $('.glyphicon-paperclip').css("background-color", "rgb(255, 255, 255)");
                 $(this).css("background-color", "gray");
+                tag_value = $(this).html();
             }
             else{
+                tag_value = "none";
                 $(this).css("background-color", "white");
             }
         });

@@ -27,7 +27,7 @@ exports.addMessage = function(msg, callback) {
 		name : msg.name,
 		message : msg.message,
 		like : 0,
-		message_id: msg._id,
+		tag : msg.tag
 	};
 	myCollection.insert( insert_message, function(err){
 		if (err) throw  err;

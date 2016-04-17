@@ -23,12 +23,12 @@ socket_io.on('connection', function(socket){
         console.log(data);
         var name = data.name,
             msg = data.message,
-            insItem = {name: name, message: msg, like:0};
+            msg_tag = data.tag;
 
         if(err) throw err;
 
         //emit all the messages to all clients
-        var sendItem = {name: name, message: msg, like:0, _id:insItem._id};
+        var sendItem = {name: name, message: msg, like:0, tag: msg_tag};
         message.addMessage(sendItem, function(err, out_msg){
             socket_io.emit('output',[out_msg]);
         });
