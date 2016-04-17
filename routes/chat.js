@@ -2,18 +2,41 @@ var express = require('express');
 var path = require('path');
 var router = express.Router();
 var socket_io = require('../io');
+var message = require('../models/message');
 
 
 /* GET chat page. */
 router.get('/', function(req, res) {
-   res.sendFile(path.join(__dirname+'/../public/chat.html'));
+    res.sendFile(path.join(__dirname+'/../public/chat.html'));
 });
 
 socket_io.on('connection', function(socket){
-  console.log('user connected');
-  socket.on('chat msg', function(msg) {
-  	socket_io.emit('chat msg', msg);
-  });
+    console.log('user conn');
+
+    message.limit100Messages(function(err, result){
+        if (err) throw err;
+        socket.emit('output',result.reverse());
+    });
+
+    socket.on('input', function(data, err){
+        console.log("entered input");
+        console.log(data);
+        var name = data.name,
+            msg = data.message,
+            insItem = {name: name, message: msg, like:0};
+
+        if(err) throw err;
+
+        //emit all the messages to all clients
+        var sendItem = {name: name, message: msg, like:0, _id:insItem._id};
+        message.addMessage(sendItem, function(err, out_msg){
+            socket_io.emit('output',[out_msg]);
+        });
+    });
+
+    socket.on('like', function(data){
+        console.log(data);
+    });
 });
 
 module.exports = router;

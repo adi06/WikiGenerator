@@ -9,6 +9,14 @@ dbCon.getConnection(function(err, db){
 	myCollection = db.collection('messages');
 });
 
+//limit to 100 messages
+exports.limit100Messages = function(callback){
+	myCollection.find().limit(20).sort({_id: -1}).toArray(function(err, res){
+	if(err) throw err;
+	return	callback(null, res);
+	});
+};
+
 // select all messages from database
 exports.getMessages = function(callback){
 	collection.find({}, function(err, msg){
@@ -18,16 +26,19 @@ exports.getMessages = function(callback){
 }
 
 // insert messages to database
-exports.addMessage = function(userId, threadId, msg, callback) {
-	collection.insert({
-						userId : userId,
-						threadId : threadId, 
-						message : msg,
-						rating : 0
-						}, function(err, message) {
-					  		if (err) throw err;
-					  		callback(null, message);
-					  });
+exports.addMessage = function(msg, callback) {
+	console.log('test:'+ msg.message);
+	var insert_message = {
+		name : msg.name,
+		message : msg.message,
+		like : 0,
+		message_id: msg._id,
+	};
+	myCollection.insert( insert_message, function(err){
+		if (err) throw  err;
+		//console.log('second',insert_message.message);
+		callback(null, insert_message);
+	});
 }
 
 // get latest wiki

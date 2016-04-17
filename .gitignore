@@ -1,2 +1,6 @@
+<<<<<<< 65b9a60010694fedf2146f8712901fff7e1817df
 node_modules
-env.json
+.idea/
+node_modules/
+node_modules/mongodb/
+>>>>>>> CHG: .gitignore
