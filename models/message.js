@@ -38,7 +38,22 @@ exports.addMessage = function(msg, callback) {
 
 //like processing
 exports.processLikes = function(data, callback){
+	//console.log(data);
 
+	var ObjectId = require('mongodb').ObjectID;
+	var count;
+	var msg;
+	myCollection.findOne({"_id" : ObjectId(data.messageID)},function(err, obj){
+		if(err) throw err;
+		count = obj.like;
+		msg = obj.message;
+	});
+
+	myCollection.update(
+		{"_id" : ObjectId(data.messageID)},
+		{ $inc: { like: 1} }
+	);
+	callback(null, data);
 };
 
 // get latest wiki

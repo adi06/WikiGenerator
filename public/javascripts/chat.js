@@ -54,6 +54,7 @@ var message_side;
             $('.message_input').val('');
             $messages = $('.messages');
 
+
             message = new Message({
                 text: text
             });
@@ -87,6 +88,23 @@ var message_side;
                     });
                     message.draw();
                 }
+            }
+        });
+
+        //get likes
+        socket.on('liked', function(data){
+            $('#count'+ data.messageID).html(data.server_like);
+        });
+
+        //tag clicks
+        $('.glyphicon-paperclip').click(function(){
+            var color = $(this).css("background-color");
+            if(color == 'rgb(230, 230, 230)' || color == 'rgb(255, 255, 255)'){
+                $('.glyphicon-paperclip').css("background-color", "rgb(255, 255, 255)");
+                $(this).css("background-color", "gray");
+            }
+            else{
+                $(this).css("background-color", "white");
             }
         });
     });

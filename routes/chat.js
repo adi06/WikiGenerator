@@ -35,7 +35,9 @@ socket_io.on('connection', function(socket){
     });
 
     socket.on('like', function(data){
-        console.log(data);
+        message.processLikes(data, function(err, ret_likes){
+            socket_io.emit('liked',ret_likes);
+        });
     });
 });
 

@@ -10,8 +10,6 @@ dbCon.getConnection(function(err, db){
     myCollection = db.collection('user');
 });
 
-//temporary data store
-var users = {};
 
 module.exports = function(passport){
 
