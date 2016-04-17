@@ -1,7 +1,3 @@
-var monk = require('monk');
-var db = monk('localhost:27017/wikigenerator');
-var collection = db.get('users');
-
 var crypto = require('crypto');
 
 hash = function(password) {

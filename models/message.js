@@ -1,8 +1,3 @@
-//TODO remove monk and use Mongoclient
-var monk = require('monk');
-var db = monk('localhost:27017/wikigenerator');
-var collection = db.get('messages');
-
 var dbCon = require('../db');
 var myCollection;
 dbCon.getConnection(function(err, db){
@@ -40,6 +35,11 @@ exports.addMessage = function(msg, callback) {
 		callback(null, insert_message);
 	});
 }
+
+//like processing
+exports.processLikes = function(data, callback){
+
+};
 
 // get latest wiki
 exports.addToWiki = function(callback){

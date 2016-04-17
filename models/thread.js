@@ -1,6 +1,3 @@
-var monk = require('monk');
-var db = monk('localhost:27017/wikigenerator');
-var collection = db.get('threads');
 
 // Get all threads from database
 exports.getThreads = function(callback){
