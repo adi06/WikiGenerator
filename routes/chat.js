@@ -7,6 +7,7 @@ var message = require('../models/message');
 
 /* GET chat page. */
 router.get('/', function(req, res) {
+    console.log("session data",req.session.username);
     res.sendFile(path.join(__dirname+'/../public/chat.html'));
 });
 

@@ -78,5 +78,12 @@ app.use(function(err, req, res, next) {
   });
 });
 
+app.use(session({
+  cookieName: 'session',
+  secret: 'tolcs16',
+  duration: 30 * 60 * 1000,
+  activeDuration: 5 * 60 * 1000,
+}))
+
 
 module.exports = app;

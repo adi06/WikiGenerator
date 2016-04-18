@@ -15,8 +15,8 @@ module.exports = function(passport){
 
     // Passport needs to be able to serialize and deserialize users to support persistent login sessions
     passport.serializeUser(function(user, done) {
-        console.log('serializing user:',user.username);
-        return done(null, user.username);
+        console.log('serializing user:',user);
+        return done(null, user);
     });
 
     passport.deserializeUser(function(username, done) {
@@ -47,6 +47,7 @@ module.exports = function(passport){
         }
         // User and password both match, return user from done method
         // which will be treated like success
+        req.session.username = username;
         return done(null, user);
     }
 );
@@ -86,10 +87,35 @@ module.exports = function(passport){
         callbackURL: "http://localhost:3000/api/chat"
         },
         function(accessToken, refreshToken, profile, done) {
-            console.log("facebook_profile",profile);
 
-            return done(null,profile);
-  }
+      // find the user in the database based on their facebook id
+      // asynchronous
+        process.nextTick(function() {
+
+            // find the user in the database based on their facebook id
+            myCollection.findOne({ 'id': profile.id }, function(err, user) {
+
+                // if there is an error, stop everything and return that
+                // ie an error connecting to the database
+                if (err) done(err);
+                // if the user is found, then log them in
+                if (user) {
+                    return done(null, user); // user found, return that user
+                } else {
+                    console.log('insert profile in db');
+                    // save our user to the database
+                    myCollection.insert({id: profile.id,
+                                         name: profile.name
+                                         },
+                                         function(err, res){
+                                            if (err) done(err);
+                                            return done(null,res);
+                                     });
+                }
+
+  });
+        });
+    }
 ));
 
     var isValidPassword = function(user, password){
