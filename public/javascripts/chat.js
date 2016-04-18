@@ -93,6 +93,7 @@ var message_side;
                     });
                     disp_like = data[x].like;
                     message.draw();
+                    tag_value = "none";
                 }
             }
         });
