@@ -17,6 +17,7 @@ var users = require('./routes/user');
 var threads = require('./routes/thread');
 var messages = require('./routes/message');
 var wiki = require('./routes/wiki');
+var forum = require('./routes/forum');
 
 var app = express();
 
@@ -45,6 +46,7 @@ app.use('/api/users', users);
 app.use('/api/threads', threads);
 app.use('/api/messages', messages);
 app.use('/api/wiki',wiki);
+app.use('/api/forum', forum);
 
 
 // catch 404 and forward to error handler
