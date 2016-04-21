@@ -1,7 +1,7 @@
 var LocalStrategy   = require('passport-local').Strategy;
-var FacebookStrategy = require('passport-facebook').Strategy;
+//var FacebookStrategy = require('passport-facebook').Strategy;
 
-var env_config = require('./helpers/common').config();
+//var env_config = require('./helpers/common').config();
 var bCrypt = require('bcrypt-nodejs');
 
 var dbCon = require('./db');
@@ -81,7 +81,7 @@ module.exports = function(passport){
        }
     ));
 
-    passport.use('facebook', new FacebookStrategy({
+    /*passport.use('facebook', new FacebookStrategy({
         clientID: env_config.facebook_app_id,
         clientSecret: env_config.facebook_app_secret,
         callbackURL: "http://localhost:3000/api/chat"
@@ -116,7 +116,7 @@ module.exports = function(passport){
   });
         });
     }
-));
+));*/
 
     var isValidPassword = function(user, password){
         return bCrypt.compareSync(password, user.password);

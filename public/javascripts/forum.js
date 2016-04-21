@@ -21,7 +21,7 @@ $(document).ready(function () {
             data: { question: $(".qn-1").text() },
             success: function(data)
             {
-
+                console.log(data);
             }
         });
     });
