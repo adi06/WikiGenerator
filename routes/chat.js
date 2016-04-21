@@ -8,13 +8,17 @@ var message = require('../models/message');
 /* GET chat page. */
 router.get('/', function(req, res) {
     console.log("session data",req.session.username);
-    res.render('chat',{question: 'incorrect api call'});
+    console.log("question ",req.session.question);
+    res.render('chat',{question: req.session.question});
 });
 
 /*question from forum*/
 router.post('/', function(req, res){
-    res.render('chat',{question: req.body.question});
+    console.log(req.body.question);
+    req.session.question = req.body.question;
+    res.json(req.body.question);
 });
+
 
 socket_io.on('connection', function(socket){
     console.log('user conn');
