@@ -8,7 +8,14 @@ var message = require('../models/message');
 /* GET chat page. */
 router.get('/', function(req, res) {
     console.log("session data",req.session.username);
-    res.sendFile(path.join(__dirname+'/../public/chat.html'));
+    //res.sendFile(path.join(__dirname+'/../public/chat.html'));
+    res.render('chat',{question: 'xxx'});
+});
+
+/*question from forum*/
+router.post('/', function(req, res){
+    console.log('req body', req.body);
+    res.render('chat',{question: req.body.question});
 });
 
 socket_io.on('connection', function(socket){

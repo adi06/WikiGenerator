@@ -4,10 +4,6 @@ $(document).ready(function () {
         $(this).toggleClass('star-checked');
     });
 
-    $('.ckbox label').on('click', function () {
-        $(this).parents('tr').toggleClass('selected');
-    });
-
     $('.btn-filter').on('click', function () {
         var $target = $(this).data('target');
         if ($target != 'all') {
@@ -16,6 +12,18 @@ $(document).ready(function () {
         } else {
             $('.table tr').css('display', 'none').fadeIn('slow');
         }
+    });
+
+    $('#submit').click(function() {
+        $.ajax({
+            type: 'POST',
+            url: '/api/chat',
+            data: { question: $(".qn-1").text() },
+            success: function(data)
+            {
+
+            }
+        });
     });
 
 });/**
