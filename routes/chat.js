@@ -26,11 +26,12 @@ router.post('/', function(req, res){
 router.post('/send', function(req, res) {
     console.log("user",req.sessioin.username);
     console.log("msg",req.body.msg);
-
-    message.addMessage(sendItem, function(err, out_msg){
+    var response
+    message.addMessage(req.body.msg, function(err, out_msg){
             socket_io.emit('output',[out_msg]);
+            response=out_msg;
         });
-
+    res.json(response);
 });
 
 
