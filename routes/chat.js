@@ -24,14 +24,22 @@ router.post('/', function(req, res){
 });
 
 router.post('/send', function(req, res) {
-    console.log("user",req.sessioin.username);
-    console.log("msg",req.body.msg);
-    var response
-    message.addMessage(req.body.msg, function(err, out_msg){
+    var user = req.session.username;
+    var msg = req.body.msg;
+    var tag = req.body.tag;
+    var msg_req = {
+        "username" : user,
+        "message" : msg,
+        "tag" : tag
+    };
+
+    message.addMessage(msg_req, function(err, out_msg){
+            if(err) throw err;
+            console.log('success');
             socket_io.emit('output',[out_msg]);
-            response=out_msg;
+            console.log('before response');
         });
-    res.json(response);
+    res.json(msg);
 });
 
 

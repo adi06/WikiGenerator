@@ -62,10 +62,23 @@ var message_side;
                 text: text
             });
 
+            /*------------------------
             socket.emit('input', {
                 name: "Test",
                 message: text,
                 tag : tag_value
+            });
+            */
+
+            $.ajax({
+                type: 'POST',
+                url: '/api/chat/send',
+                data: {"msg" : text,
+                        "tag": tag_value },
+                success: function(data)
+                {
+                    console.log('received msg',data);
+                }
             });
 
             //message.draw();
@@ -116,6 +129,7 @@ var message_side;
                 $(this).css("background-color", "white");
             }
         });
+
     });
 }.call(this));
 
