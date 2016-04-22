@@ -84,7 +84,7 @@ var message_side;
             $('.glyphicon-paperclip').css("background-color", "rgb(255, 255, 255)");
             if(data.length){
                 for(var x=0;x<data.length;x=x+1){
-                    console.log(data[x].message);
+                    console.log(data[x].username);
                     message_side = message_side === 'left' ? 'right' : 'left';
                     message = new Message({
                         text: data[x].message,

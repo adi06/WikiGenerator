@@ -4,6 +4,8 @@ var router = express.Router();
 var socket_io = require('../io');
 var message = require('../models/message');
 
+var logged_username;
+var current_question;
 
 /* GET chat page. */
 router.get('/', function(req, res) {
@@ -14,8 +16,10 @@ router.get('/', function(req, res) {
 
 /*question from forum*/
 router.post('/', function(req, res){
-    console.log(req.body.question);
+    //console.log(req.body.question);
     req.session.question = req.body.question;
+    logged_username = req.session.username;
+    current_question = req.body.question;
     res.json(req.body.question);
 });
 
@@ -29,14 +33,13 @@ socket_io.on('connection', function(socket){
     });
 
     socket.on('input', function(data, err){
-        var name = data.name,
-            msg = data.message,
+        var msg = data.message,
             msg_tag = data.tag;
 
         if(err) throw err;
 
         //emit all the messages to all clients
-        var sendItem = {name: name, message: msg, like:0, tag: msg_tag};
+        var sendItem = {username: logged_username, message: msg, like:0, tag: msg_tag};
         message.addMessage(sendItem, function(err, out_msg){
             socket_io.emit('output',[out_msg]);
         });

@@ -24,7 +24,7 @@ exports.getMessages = function(callback){
 exports.addMessage = function(msg, callback) {
 	console.log('test:'+ msg.message);
 	var insert_message = {
-		name : msg.name,
+		username : msg.username,
 		message : msg.message,
 		like : 0,
 		tag : msg.tag
