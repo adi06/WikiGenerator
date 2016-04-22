@@ -23,6 +23,16 @@ router.post('/', function(req, res){
     res.json(req.body.question);
 });
 
+router.post('/send', function(req, res) {
+    console.log("user",req.sessioin.username);
+    console.log("msg",req.body.msg);
+
+    message.addMessage(sendItem, function(err, out_msg){
+            socket_io.emit('output',[out_msg]);
+        });
+
+});
+
 
 socket_io.on('connection', function(socket){
     console.log('user conn');
@@ -32,17 +42,17 @@ socket_io.on('connection', function(socket){
         socket.emit('output',result.reverse());
     });
 
-    socket.on('input', function(data, err){
+    socket.on('input', function(err, data){
         var msg = data.message,
             msg_tag = data.tag;
 
         if(err) throw err;
 
         //emit all the messages to all clients
-        var sendItem = {username: logged_username, message: msg, like:0, tag: msg_tag};
+        /*var sendItem = {username: logged_username, message: msg, like:0, tag: msg_tag};
         message.addMessage(sendItem, function(err, out_msg){
             socket_io.emit('output',[out_msg]);
-        });
+        });*/
     });
 
     socket.on('like', function(data){
