@@ -8,7 +8,7 @@ $(document).ready(function () {
             success: function(data)
             {
                 console.log('success');
-                window.location = "http://localhost:3000/api/chat";
+                window.location = "/api/chat";
             }
         });
     });
