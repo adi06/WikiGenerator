@@ -24,20 +24,16 @@ router.post('/', function(req, res){
 });
 
 router.post('/send', function(req, res) {
-    var user = req.session.username;
-    var msg = req.body.msg;
-    var tag = req.body.tag;
+
     var msg_req = {
-        "username" : user,
-        "message" : msg,
-        "tag" : tag
+        "username" : req.session.username,
+        "message" : req.body.msg,
+        "tag" : req.body.tag
     };
 
     message.addMessage(msg_req, function(err, out_msg){
             if(err) throw err;
-            console.log('success');
             socket_io.emit('output',[out_msg]);
-            console.log('before response');
         });
     res.json(msg);
 });
