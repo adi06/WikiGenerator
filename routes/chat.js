@@ -20,15 +20,14 @@ router.post('/', function(req, res){
     req.session.question = req.body.question;
     logged_username = req.session.username;
     current_question = req.body.question;
-    req.session.qncontent = req.body.qncontent;
     res.json(req.body);
 });
 
 router.post('/send', function(req, res) {
     var msg_req = {
         "username" : req.session.username,
-        "question" : req.session.question,
-        "qncontent": req.session.qncontent,
+        "question" : req.body.question,
+        "qncontent": req.body.qncontent,
         "message" : req.body.msg,
         "tag" : req.body.tag
     };
