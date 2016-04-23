@@ -130,10 +130,10 @@ var message_side;
                 $(this).css("background-color", "white");
             }
         });
-
     });
 }.call(this));
 
 function notifyLike(data){
-    socket.emit('like', {messageID: data.messageID, server_like: data.like});
+    var questionId = $('.qn-id').val();
+    socket.emit('like', {messageID: data.messageID, server_like: data.like, question: questionId});
 };
