@@ -19,8 +19,9 @@ router.get('/', function(req, res) {
 });
 //TODO
 // Fetch latest wiki
-router.get('/latest', function(req , res){
-	messages.addToWiki(function(err, msg){
+router.get('/latest/:question', function(req , res){
+
+	messages.getWiki(req.params.question,function(err, msg){
 		if (err) throw err;
 		res.json(msg);
 	});
