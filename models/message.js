@@ -58,15 +58,16 @@ exports.processLikes = function(data, callback){
 
 // get latest wiki
 exports.addToWiki = function(callback){
-	
+
 myCollection.aggregate(
 	[
-	{ $match: { rating: { $gt : 1 } } },
+	{ $match: { like: { $gt : 1 } } },
 	   	{
 	     $group: {
 	        _id: {
 	           threadId: "$threadId",
-	           message: "$message"
+	           message: "$message",
+	           tag : "$tag"
 	        }
 	     }
 	   }
