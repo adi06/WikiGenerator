@@ -113,7 +113,7 @@ var message_side;
         });
 
         //get likes
-        socket.on(qn_listener+'liked', function(data){
+        socket.on(qn_listener+'-liked', function(data){
             $('#count'+ data.messageID).html(data.server_like);
         });
 
