@@ -6,6 +6,7 @@ var message = require('../models/message');
 
 var logged_username;
 var current_question;
+var question_content;
 
 /* GET chat page. */
 router.get('/', function(req, res) {
@@ -20,14 +21,15 @@ router.post('/', function(req, res){
     req.session.question = req.body.question;
     logged_username = req.session.username;
     current_question = req.body.question;
+    question_content = req.body.qncontent;
     res.json(req.body);
 });
 
 router.post('/send', function(req, res) {
     var msg_req = {
         "username" : req.session.username,
-        "question" : req.body.question,
-        "qncontent": req.body.qncontent,
+        "question" : current_question,
+        "qncontent": question_content,
         "message" : req.body.msg,
         "tag" : req.body.tag
     };
@@ -64,7 +66,6 @@ socket_io.on('connection', function(socket){
 
     socket.on('like', function(data){
         message.processLikes(data, function(err, ret_likes){
-            console.log(data);
             socket_io.emit(data.question+'-liked',ret_likes);
         });
     });
