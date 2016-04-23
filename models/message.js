@@ -6,9 +6,9 @@ dbCon.getConnection(function(err, db){
 
 //limit to 100 messages
 exports.limit100Messages = function(callback){
-	myCollection.find().limit(20).sort({_id: -1}).toArray(function(err, res){
+	myCollection.find({"question":"question1"}).limit(20).sort({_id: -1}).toArray(function(err, res1){
 	if(err) throw err;
-	return	callback(null, res);
+	return callback(null, res1);
 	});
 };
 
@@ -25,6 +25,8 @@ exports.addMessage = function(msg, callback) {
 	console.log('test:'+ msg.message);
 	var insert_message = {
 		username : msg.username,
+		question : msg.question,
+		qncontent : msg.qncontent,
 		message : msg.message,
 		like : 0,
 		tag : msg.tag

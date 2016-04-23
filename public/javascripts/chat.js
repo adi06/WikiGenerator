@@ -36,6 +36,7 @@ var message_side;
         return this;
     };
     $(function () {
+        var qn_listener = $('.qn-id').val();
         var getMessageText, sendMessage;
         message_side = 'right';
         var getNode = function(s){
@@ -93,7 +94,7 @@ var message_side;
                 return sendMessage(getMessageText());
             }
         });
-        socket.on('output', function(data){
+        socket.on(qn_listener+'-output', function(data){
             $('.glyphicon-paperclip').css("background-color", "rgb(255, 255, 255)");
             if(data.length){
                 for(var x=0;x<data.length;x=x+1){
@@ -112,7 +113,7 @@ var message_side;
         });
 
         //get likes
-        socket.on('liked', function(data){
+        socket.on(qn_listener+'liked', function(data){
             $('#count'+ data.messageID).html(data.server_like);
         });
 
