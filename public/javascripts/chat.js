@@ -75,7 +75,7 @@ var message_side;
                 type: 'POST',
                 url: '/api/chat/send',
                 data: {"msg" : text,
-                        "tag": tag_value },
+                       "tag": tag_value},
                 success: function(data)
                 {
                     console.log('received msg',data);

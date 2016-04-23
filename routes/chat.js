@@ -12,6 +12,8 @@ var question_content;
 router.get('/', function(req, res) {
     console.log("session data",req.session.username);
     console.log("question ",req.session.question);
+    current_question = req.session.question;
+    question_content = req.session.qncontent;
     res.render('chat',{question: req.session.question});
 });
 
