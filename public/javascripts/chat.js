@@ -131,6 +131,17 @@ var message_side;
             }
         });
 
+        $('#wiki').click(function(){
+            var questionId = $('.qn-id').val();
+            $.ajax({
+                type: 'GET',
+                url: '/api/wiki/latest/'+questionId,
+                success: function(data)
+                {
+                    console.log('received msg',data);
+                }
+            });
+        });
 
     });
 }.call(this));

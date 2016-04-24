@@ -77,8 +77,8 @@ myCollection.aggregate(
 	function(err, result){
 		if (err) throw err;
 		console.log("the result is",result);
-		console.log("id",result[0]._id.message);
-		callback(null, [result]);
+		//console.log("id",result[0]._id.message);
+		callback(null, result);
 	}
 	);
 }
