@@ -137,7 +137,10 @@ var message_side;
                 url: '/api/wiki/latest/'+questionId,
                 success: function(data)
                 {
-                    console.log('received msg',data);
+                    //console.log('received msg',data);
+                    //window.location = "/api/wiki";
+                     window.open("/api/wiki",'_blank');
+
                 }
             });
         });
@@ -148,7 +151,7 @@ var message_side;
                 url: '/api/stat',
                 success: function(data)
                 {
-                    window.location = '/api/stat';
+                    window.open('/api/stat','_blank');
                 }
             });
         });
