@@ -29,31 +29,27 @@ exports.addMessage = function(msg, callback) {
 		qncontent : msg.qncontent,
 		message : msg.message,
 		like : 0,
-		tag : msg.tag
+		tag : msg.tag,
+		likedPeople : []
 	};
 	myCollection.insert( insert_message, function(err){
 		if (err) throw  err;
 		//console.log('second',insert_message.message);
 		callback(null, insert_message);
 	});
-}
+};
 
 //like processing
 exports.processLikes = function(data, callback){
-	//console.log(data);
-
 	var ObjectId = require('mongodb').ObjectID;
 	var count;
 	var msg;
-	myCollection.findOne({"_id" : ObjectId(data.messageID)},function(err, obj){
-		if(err) throw err;
-		count = obj.like;
-		msg = obj.message;
-	});
 
-	myCollection.update(
+	myCollection.findOneAndUpdate(
 		{"_id" : ObjectId(data.messageID)},
-		{ $inc: { like: 1} }
+		{ $inc: { like: 1},
+			$push : {likedPeople: data.username}
+		}
 	);
 	callback(null, data);
 };

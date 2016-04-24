@@ -62,14 +62,6 @@ var message_side;
                 text: text
             });
 
-            /*------------------------
-            socket.emit('input', {
-                name: "Test",
-                message: text,
-                tag : tag_value
-            });
-            */
-
             $.ajax({
                 type: 'POST',
                 url: '/api/chat/send',
@@ -113,6 +105,7 @@ var message_side;
 
         //get likes
         socket.on(qn_listener+'-liked', function(data){
+            var current_user = $('.username').val();
             $('#count'+ data.messageID).html(data.server_like);
         });
 
@@ -160,5 +153,6 @@ var message_side;
 
 function notifyLike(data){
     var questionId = $('.qn-id').val();
-    socket.emit('like', {messageID: data.messageID, server_like: data.like, question: questionId});
+    var user_name = $('.username').val();
+    socket.emit('like', {messageID: data.messageID, server_like: data.like, question: questionId, username: user_name});
 };
