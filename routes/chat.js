@@ -43,7 +43,6 @@ router.post('/send', function(req, res) {
     //res.json(msg);
 });
 
-
 socket_io.on('connection', function(socket){
     console.log('user conn');
 

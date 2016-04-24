@@ -43,7 +43,6 @@ var message_side;
                 return document.querySelector(s);
             },
 
-
             getMessageText = function () {
                 var $message_input;
                 $message_input = $('.message_input');
@@ -143,6 +142,16 @@ var message_side;
             });
         });
 
+        $('#statistics').click(function(){
+            $.ajax({
+                type: 'GET',
+                url: '/api/stat',
+                success: function(data)
+                {
+                    window.location = '/api/stat';
+                }
+            });
+        });
     });
 }.call(this));
 
