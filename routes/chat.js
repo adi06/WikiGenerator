@@ -12,13 +12,14 @@ var question_content;
 router.get('/', function(req, res) {
     console.log("session data",req.session.username);
     console.log("question ",req.session.question);
-    res.render('chat',{ question: req.session.question, qcontent: question_content });
+    res.render('chat',{ question: req.session.question, qcontent: req.session.qncontent });
 });
 
 /*question from forum*/
 router.post('/', function(req, res){
     //console.log(req.body.question);
     req.session.question = req.body.question;
+    req.session.qncontent = req.body.qncontent;
     logged_username = req.session.username;
     current_question = req.body.question;
     question_content = req.body.qncontent;
