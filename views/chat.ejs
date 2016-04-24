@@ -12,6 +12,10 @@
     <script src="/javascripts/chat.js"></script>
 </head>
 <body>
+<div class="question-block">
+    <h3>Question</h3>
+    <p><%= qcontent %></p>
+</div>
 <div class="chat_window">
   <div class="top_menu">
     <div class="title">Chat</div>
@@ -34,6 +38,16 @@
       <a id="sug" class="btn btn-default glyphicon glyphicon-paperclip">Suggestion</a>
     </div>
   </div>
+</div>
+<div class="util-buttons">
+    <div id="wiki" class="gen-button">
+        <div class="icon"></div>
+        <div class="text">Generate Wiki</div>
+    </div>
+    <div id="statistics" class="gen-button">
+        <div class="icon"></div>
+        <div class="text">Show Statistics</div>
+    </div>
 </div>
 <div class="message_template">
   <li class="message">

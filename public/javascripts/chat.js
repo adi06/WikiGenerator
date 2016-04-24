@@ -130,6 +130,8 @@ var message_side;
                 $(this).css("background-color", "white");
             }
         });
+
+
     });
 }.call(this));
 

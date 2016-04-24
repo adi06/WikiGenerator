@@ -193,3 +193,73 @@ body {
 .message_template {
     display: none;
 }
+
+.gen-button{
+    width: 140px;
+    height: 50px;
+    display: inline-block;
+    border-radius: 50px;
+    background-color: #a3d063;
+    border: 2px solid #a3d063;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.2s linear;
+    text-align: center;
+    /*float: right;*/
+}
+
+.gen-button:hover {
+    color: #a3d063;
+    background-color: #fff;
+}
+
+.gen-button .text {
+    font-size: 18px;
+    font-weight: 300;
+    display: inline-block;
+    line-height: 48px;
+}
+
+#wiki{
+    margin-top: 80px;
+    margin-right: 5px;
+    align-content: center;
+}
+
+#statistics{
+    margin-top: 30px;
+    margin-right: 5px;
+    align-content: center;
+}
+
+.question-block{
+    position: absolute;
+    width: calc(100% - 60px);
+    max-width: 200px;
+    height: 500px;
+    border-radius: 10px;
+    background-color: #fff;
+    left: 2%;
+    top: 7%;
+}
+
+div.question-block h3{
+    text-align: center;
+}
+
+div.question-block p{
+    text-align: center;
+    font-family: "Times New Roman";
+    font-size: large;
+    margin-top: 30%;
+}
+
+.util-buttons{
+    /*position: absolute;*/
+    float: right;
+    width: calc(100% - 60px);
+    max-width: 200px;
+    height: 50px;
+    margin-right: 0%;
+    margin-top: 10%;
+}
