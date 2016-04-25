@@ -113,7 +113,7 @@ var message_side;
         $('.glyphicon-paperclip').click(function(){
             var color = $(this).css("background-color");
             if(color == 'rgb(230, 230, 230)' || color == 'rgb(255, 255, 255)'){
-                $('.glyphicon-paperclip').css("background-color", "rgb(255, 255, 255)");
+                $('.glyphicon').css("background-color", "rgb(255, 255, 255)");
                 $(this).css("background-color", "gray");
                 tag_value = $(this).html();
             }
@@ -122,6 +122,33 @@ var message_side;
                 $(this).css("background-color", "white");
             }
         });
+
+        $('.glyphicon-time').click(function(){
+            var color = $(this).css("background-color");
+            if(color == 'rgb(230, 230, 230)' || color == 'rgb(255, 255, 255)'){
+                $('.glyphicon').css("background-color", "rgb(255, 255, 255)");
+                $(this).css("background-color", "gray");
+                tag_value = $(this).html();
+            }
+            else{
+                tag_value = "none";
+                $(this).css("background-color", "white");
+            }
+        })
+
+        $('.glyphicon-star').click(function(){
+            var color = $(this).css("background-color");
+            if(color == 'rgb(230, 230, 230)' || color == 'rgb(255, 255, 255)'){
+                $('.glyphicon').css("background-color", "rgb(255, 255, 255)");
+                $(this).css("background-color", "gray");
+                tag_value = $(this).html();
+            }
+            else{
+                tag_value = "none";
+                $(this).css("background-color", "white");
+            }
+        })
+
 
         $('#wiki').click(function(){
             var questionId = $('.qn-id').val();
