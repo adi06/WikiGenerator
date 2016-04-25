@@ -8,12 +8,13 @@ var wiki = require('../models/wiki');
 var logged_username;
 var current_question;
 var question_content;
-
+var wikiID;
 /* GET chat page. */
 router.get('/', function(req, res) {
+    wikiID = randstring.generate(7);
     console.log("session data",req.session.username);
     console.log("question ",req.session.question);
-    wiki.createWiki(randstring.generate(7));
+    wiki.createWiki(wikiID);
     res.render('chat',{ question: req.session.question, qcontent: req.session.qncontent, username: req.session.username });
 });
 

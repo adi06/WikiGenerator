@@ -54,7 +54,7 @@ exports.processLikes = function(data, callback){
 	callback(null, data);
 };
 
-// get latest wiki
+
 exports.getWiki = function(question, callback){
 
 myCollection.aggregate(
