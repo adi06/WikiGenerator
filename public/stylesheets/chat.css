@@ -16,7 +16,7 @@ body {
     background-color: #fff;
     left: 50%;
     top: 50%;
-    transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-60%);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
     background-color: #f8f8f8;
     overflow: hidden;
@@ -236,9 +236,10 @@ body {
     position: absolute;
     width: calc(100% - 50px);
     max-width: 15%;
-    height: 80%;
+    height: 40%;
     border-radius: 10px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5%);
     background-color: #fff;
     left: 2%;
     top: 10%;
@@ -264,3 +265,4 @@ div.question-block p{
     margin-right: 0%;
     margin-top: 10%;
 }
+

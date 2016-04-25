@@ -16,14 +16,14 @@ module.exports = function(passport){
     //log in
     router.post('/login', passport.authenticate('login', {
         successRedirect: '/api/forum',
-        failureRedirect: '/'
+        failureRedirect: '/signup'
     }));
 
     router.get('/facebook', passport.authenticate('facebook'));
 
     //sign up
     router.post('/signup', passport.authenticate('signup', {
-        successRedirect: '/',
+        successRedirect: '/api/forum',
         failureRedirect: '/'
     }));
 

@@ -3,7 +3,8 @@ var path = require('path');
 var router = express.Router();
 var socket_io = require('../io');
 var message = require('../models/message');
-
+var randstring = require('randomstring');
+var wiki = require('../models/wiki');
 var logged_username;
 var current_question;
 var question_content;
@@ -12,6 +13,7 @@ var question_content;
 router.get('/', function(req, res) {
     console.log("session data",req.session.username);
     console.log("question ",req.session.question);
+    wiki.createWiki(randstring.generate(7));
     res.render('chat',{ question: req.session.question, qcontent: req.session.qncontent, username: req.session.username });
 });
 
@@ -57,11 +59,7 @@ socket_io.on('connection', function(socket){
 
         if(err) throw err;
 
-        //emit all the messages to all clients
-        /*var sendItem = {username: logged_username, message: msg, like:0, tag: msg_tag};
-        message.addMessage(sendItem, function(err, out_msg){
-            socket_io.emit('output',[out_msg]);
-        });*/
+        
     });
 
     socket.on('like', function(data){
