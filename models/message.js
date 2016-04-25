@@ -46,11 +46,11 @@ exports.processLikes = function(data, callback){
 	var msg;
 
 	myCollection.findOneAndUpdate(
-		{"_id" : ObjectId(data.messageID)},
-		{ $inc: { like: 1},
-			$push : {likedPeople: data.username}
-		}
+		{$and : [{"_id" : ObjectId(data.messageID)}, {"likedPeople" : {$nin:[data.username]}}]},
+		{ $inc: { like: 1}, $push : {likedPeople: data.username}},
+		{projection :{ "_id":1, "like":1, "question":1, "username":1}}
 	);
+
 	callback(null, data);
 };
 
