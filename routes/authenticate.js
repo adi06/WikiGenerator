@@ -23,7 +23,7 @@ module.exports = function(passport){
 
     //sign up
     router.post('/signup', passport.authenticate('signup', {
-        successRedirect: '/api/forum',
+        successRedirect: '/login.html',
         failureRedirect: '/'
     }));
 
