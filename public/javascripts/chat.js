@@ -93,7 +93,7 @@ var message_side;
                     message_side = message_side === 'left' ? 'right' : 'left';
                     message = new Message({
                         text: data[x].username + ' : ' +data[x].message,
-                        message_side: message_side,
+			message_side: message_side,
                         id: data[x]._id
                     });
                     disp_like = data[x].like;
