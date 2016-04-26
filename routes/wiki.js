@@ -26,7 +26,7 @@ router.get('/latest/:question', function(req , res){
 		if (err) throw err;
     var messg;
     var tag;
-
+    
     for(var i = 0; i < msg.length; i++) {
       messg = msg[i]._id.message;
       tag = msg[i]._id.tag;

@@ -43,7 +43,7 @@ router.post('/send', function(req, res) {
             socket_io.emit(out_msg.question+'-output',[out_msg]);
         });
     res.end();
-    //res.json(msg);
+    
 });
 
 socket_io.on('connection', function(socket){

@@ -12,6 +12,7 @@
     <script src="/javascripts/chat.js"></script>
 </head>
 <body>
+<div class="content">
 <div class="question-block">
     <h3>Question</h3>
     <p><%= qcontent %></p>
@@ -40,6 +41,17 @@
     </div>
   </div>
 </div>
+<div class="rightview">
+<div class="loggedinusers">
+    <div id="wiki" class="gen-button">
+        <div class="icon"></div>
+        <div class="text">Generate Wiki</div>
+    </div>
+    <div id="statistics" class="gen-button">
+        <div class="icon"></div>
+        <div class="text">Show Statistics</div>
+    </div>
+</div>
 <div class="util-buttons">
     <div id="wiki" class="gen-button">
         <div class="icon"></div>
@@ -50,6 +62,8 @@
         <div class="text">Show Statistics</div>
     </div>
 </div>
+</div>
+    </div>
 <div class="message_template">
   <li class="message">
     <div class="avatar"></div>
