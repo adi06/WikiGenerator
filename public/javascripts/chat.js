@@ -20,10 +20,9 @@ var message_side;
                 $like_link.id = _this.id;
                 $message.append($like_link);
                 $('.messages').append($message);
-                //console.log(this.id)
-                $('#'+_this.id).click(function(){
-                    //console.log(_this.id);
-                    $val = $('#count'+_this.id).html();
+           $('#'+_this.id).click(function(){
+               
+               $val = $('#count'+_this.id).html();
                     $('#count'+_this.id).html(function(i, val) { return +val+1 });
                     $val = $('#count'+_this.id).html();
                     notifyLike({messageID: _this.id, like: $val});

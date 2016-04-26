@@ -4,7 +4,8 @@
     <meta charset="utf-8">
     <link rel="icon" href="../../favicon.ico">
     <title>WikiGenerator</title>
-      <link rel="stylesheet" href="/stylesheets/chat.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" >
+      <script src="/javascripts/wiki.js"></script>
   </head>
   <body>
     <div class="container">
@@ -18,20 +19,25 @@
             <p>This is a wiki generated from the chat discussion based on likes of the message</p>
 
             <h3>Description</h3>
-            <p class="wiki-content" ><%= description %></p>
-
+            <ul>
+            <li><p class="wiki-content" contenteditable="true"><%= description %></p></li>
+            </ul>
             <h3>History</h3>
-            <p class="wiki-content" ><%= history %></p>
-
+            <ul>
+              <li><p class="wiki-content" ><%= history %></p></li>
+            </ul>
             <h3>News Feed</h3>
-            <p class="wiki-content" ><%= news %></p>
-
+            <ul>
+              <li><p class="wiki-content" ><%= news %></p></li>
+            </ul>
             <h3>Comments</h3>
-            <p class="wiki-content" ><%= comments %></p>
-
+            <ul>
+              <li><p class="wiki-content" ><%= comments %></p></li>
+            </ul>
             <h3>Suggestion</h3>
-            <p class="wiki-content" ><%= suggestion %></p>
-
+            <ul>
+              <li><p class="wiki-content" ><%= suggestion %></p></li>
+            </ul>
           </div>
         </div>
       </div>
