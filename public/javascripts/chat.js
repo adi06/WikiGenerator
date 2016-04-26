@@ -21,7 +21,6 @@ var message_side;
                 $message.append($like_link);
                 $('.messages').append($message);
            $('#'+_this.id).click(function(){
-               
                $val = $('#count'+_this.id).html();
                     $('#count'+_this.id).html(function(i, val) { return +val+1 });
                     $val = $('#count'+_this.id).html();
