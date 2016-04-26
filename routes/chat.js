@@ -16,7 +16,7 @@ router.get('/', function(req, res) {
     console.log("session data",req.session.username);
     console.log("question ",req.session.question);
     wiki.createWiki(wikiID);
-    var loggedinusers = utils.getusers()
+    var loggedinusers = utils.getusers();
     res.render('chat',{ question: req.session.question, qcontent: req.session.qncontent, username: req.session.username,activeusers:loggedinusers  });
 });
 
