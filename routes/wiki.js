@@ -48,7 +48,7 @@ router.get('/latest/:question', function(req , res){
         comments += messg + "\n";
       }
 
-      else if (tag == 'Suggestion') {
+      else if (tag == 'None') {
         suggestion += messg + "\n";
       }
   }

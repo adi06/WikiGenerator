@@ -5,6 +5,7 @@ var socket_io = require('../io');
 var message = require('../models/message');
 var randstring = require('randomstring');
 var wiki = require('../models/wiki');
+var utils = require('../helpers/common.js');
 var logged_username;
 var current_question;
 var question_content;
@@ -15,7 +16,8 @@ router.get('/', function(req, res) {
     console.log("session data",req.session.username);
     console.log("question ",req.session.question);
     wiki.createWiki(wikiID);
-    res.render('chat',{ question: req.session.question, qcontent: req.session.qncontent, username: req.session.username });
+    var loggedinusers = utils.getusers();
+    res.render('chat',{ question: req.session.question, qcontent: req.session.qncontent, username: req.session.username,activeusers:loggedinusers  });
 });
 
 /*question from forum*/
@@ -59,8 +61,6 @@ socket_io.on('connection', function(socket){
             msg_tag = data.tag;
 
         if(err) throw err;
-
-        
     });
 
     socket.on('like', function(data){

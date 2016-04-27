@@ -59,13 +59,14 @@ exports.getWiki = function(question, callback){
 
 myCollection.aggregate(
 	[
-	{ $match: { like: { $gt : 1 }, question: question } },
+	{ $match: { like: { $gt : 0 }, question: question } },
 	   	{
 	     $group: {
 	        _id: {
 	           question: "$question",
 	           message: "$message",
-	           tag : "$tag"
+	           tag : "$tag",
+			   author : "$username"
 	        }
 	     }
 	   }
@@ -73,7 +74,6 @@ myCollection.aggregate(
 	function(err, result){
 		if (err) throw err;
 		console.log("the result is",result);
-		//console.log("id",result[0]._id.message);
 		callback(null, result);
 	}
 	);

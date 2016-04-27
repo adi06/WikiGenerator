@@ -21,11 +21,18 @@ var message_side;
                 $message.append($like_link);
                 $('.messages').append($message);
            $('#'+_this.id).click(function(){
-               
-               $val = $('#count'+_this.id).html();
-                    $('#count'+_this.id).html(function(i, val) { return +val+1 });
-                    $val = $('#count'+_this.id).html();
-                    notifyLike({messageID: _this.id, like: $val});
+               var str = _this.text;
+               var index = str.indexOf(":");
+               var user = str.substring(0, index-1);
+               var loggeduser  = $('.username').val();
+               if(loggeduser!=user) {
+                   $val = $('#count' + _this.id).html();
+                   $('#count' + _this.id).html(function (i, val) {
+                       return +val + 1
+                   });
+                   $val = $('#count' + _this.id).html();
+                   notifyLike({messageID: _this.id, like: $val});
+               }
                 });
                 return setTimeout(function () {
                     return $message.addClass('appeared');

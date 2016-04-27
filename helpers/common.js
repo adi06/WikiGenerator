@@ -6,3 +6,7 @@ exports.adduser = function(userid){
     loggedUsers.push(userid);
     console.log(loggedUsers);
 }
+
+exports.getusers = function(){
+    return loggedUsers;
+}
