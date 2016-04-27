@@ -155,7 +155,7 @@ body {
     border: 1px solid #bcbdc0;
     width: calc(100% - 160px);
     position: relative;
-    padding: 0 20px;
+    padding: 0px 20px;
 }
 .bottom_wrapper .message_input_wrapper .message_input {
     border: none;
