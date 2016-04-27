@@ -16,42 +16,56 @@ router.get('/', function(req, res) {
 // Fetch latest wiki
 router.get('/latest/:question', function(req , res){
   console.log(req.params.question);
-    var description = '';
-    var history = '';
-    var news = '';
-    var comments = '';
-    var suggestion = '';
+    var description = [];
+    var history = [];
+    var news = [];
+    var comments = [];
+    var suggestion = [];
 
   messages.getWiki(req.params.question, function(err, msg){
 		if (err) throw err;
     var messg;
     var tag;
       var author;
-    
+
     for(var i = 0; i < msg.length; i++) {
       messg = msg[i]._id.message;
       tag = msg[i]._id.tag;
       author = msg[i]._id.author;
-
+        id = (msg[i]._id.id);
       if (tag == 'Description') {
-        description += messg + "\n";
-        console.log('description',description);
+          temp=[];
+          temp.push(id);
+          temp.push(messg);
+        description.push(temp);
       }
 
       else if( tag == 'History') {
-        history += messg + "\n";
+          temp=[];
+          temp.push(id);
+          temp.push(messg);
+        history.push(temp);
       }
 
       else if (tag == 'NewsFeed') {
-        news += messg + "\n";
+          temp=[];
+          temp.push(id);
+          temp.push(messg);
+       news.push(temp);
       }
 
       else if (tag == 'Comments') {
-        comments += messg + "\n";
+          temp=[];
+          temp.push(id);
+          temp.push(messg);
+       comments.push(temp);
       }
 
       else if (tag == 'None') {
-        suggestion += messg + "\n";
+          temp=[];
+          temp.push(id);
+          temp.push(messg);
+        suggestion.push(temp);
       }
   }
 

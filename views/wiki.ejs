@@ -20,23 +20,33 @@
 
             <h3>Description</h3>
             <ul>
-            <li><p class="wiki-content" contenteditable="true"><%= description %></p></li>
+              <% description.forEach(function(desc){ %>
+            <li><p class="wiki-content" contenteditable="true"><%= desc %></p></li>
+              <% }); %>
             </ul>
             <h3>History</h3>
             <ul>
-              <li><p class="wiki-content" ><%= history %></p></li>
+              <% history.forEach(function(desc){ %>
+              <li><p id = "<%= desc[0]%>" class="wiki-content" contenteditable="true"><%= desc[1] %></p></li>
+              <% }); %>
             </ul>
             <h3>News Feed</h3>
             <ul>
-              <li><p class="wiki-content" ><%= news %></p></li>
+              <% news.forEach(function(desc){ %>
+                <li><p id = "<%= desc[0]%> "class="wiki-content" contenteditable="true"><%= desc[1] %></p></li>
+              <% }); %>
             </ul>
             <h3>Comments</h3>
             <ul>
-              <li><p class="wiki-content" ><%= comments %></p></li>
+              <% comments.forEach(function(desc){ %>
+                <li><p id = "<%= desc[0]%> "class="wiki-content" contenteditable="true"><%= desc[1] %></p></li>
+              <% }); %>
             </ul>
             <h3>Suggestion</h3>
             <ul>
-              <li><p class="wiki-content" ><%= suggestion %></p></li>
+              <% suggestion.forEach(function(desc){ %>
+                <li><p id = "<%= desc[0]%> "class="wiki-content" contenteditable="true"><%= desc[1] %></p></li>
+              <% }); %>
             </ul>
           </div>
         </div>

@@ -63,6 +63,7 @@ myCollection.aggregate(
 	   	{
 	     $group: {
 	        _id: {
+				id :"$_id",
 	           question: "$question",
 	           message: "$message",
 	           tag : "$tag",
