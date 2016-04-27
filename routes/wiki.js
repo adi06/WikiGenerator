@@ -26,10 +26,12 @@ router.get('/latest/:question', function(req , res){
 		if (err) throw err;
     var messg;
     var tag;
+      var author;
     
     for(var i = 0; i < msg.length; i++) {
       messg = msg[i]._id.message;
       tag = msg[i]._id.tag;
+      author = msg[i]._id.author;
 
       if (tag == 'Description') {
         description += messg + "\n";
@@ -40,7 +42,7 @@ router.get('/latest/:question', function(req , res){
         history += messg + "\n";
       }
 
-      else if (tag == 'News') {
+      else if (tag == 'NewsFeed') {
         news += messg + "\n";
       }
 
@@ -58,6 +60,7 @@ router.get('/latest/:question', function(req , res){
   req.session.news = news;
   req.session.comments = comments;
   req.session.suggestion = suggestion;
+  req.session.author = author;
 
   res.json({"description":description,
             "history":history,
