@@ -7,6 +7,7 @@ var message_side;
     var Message;
     var tag_value = "none";
     var disp_like=0;
+    var incoming_tag = "none";
     Message = function (arg) {
         this.text = arg.text, this.message_side = arg.message_side, this.id = arg.id;
         this.draw = function (_this) {
@@ -18,7 +19,7 @@ var message_side;
                 $like_link = ('<a id='+_this.id+'><i class="fa fa-thumbs-up"></i><span id="count'+_this.id+'">'
                                                                                     + disp_like +'</span></a>');
                 $like_link.id = _this.id;
-                if(tag_value !== "none"){
+                if(incoming_tag!="none") {
                     $message.append($like_link);
                 }
                 $('.messages').append($message);
@@ -97,13 +98,13 @@ var message_side;
             $('.glyphicon-paperclip').css("background-color", "rgb(255, 255, 255)");
             if(data.length){
                 for(var x=0;x<data.length;x=x+1){
-                    console.log(data[x].username);
                     message_side = message_side === 'left' ? 'right' : 'left';
                     message = new Message({
                         text: data[x].username + ' : ' +data[x].message,
 			message_side: message_side,
                         id: data[x]._id
                     });
+                    incoming_tag = data[x].tag;
                     disp_like = data[x].like;
                     message.draw();
                     tag_value = "none";
