@@ -18,7 +18,9 @@ var message_side;
                 $like_link = ('<a id='+_this.id+'><i class="fa fa-thumbs-up"></i><span id="count'+_this.id+'">'
                                                                                     + disp_like +'</span></a>');
                 $like_link.id = _this.id;
-                $message.append($like_link);
+                if(tag_value !== "none"){
+                    $message.append($like_link);
+                }
                 $('.messages').append($message);
            $('#'+_this.id).click(function(){
                var str = _this.text;
