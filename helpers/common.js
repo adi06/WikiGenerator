@@ -3,8 +3,11 @@ var loggedUsers = [];
 
 exports.adduser = function(userid){
     console.log('user added to list');
-    loggedUsers.push(userid);
-    console.log(loggedUsers);
+    if(!(userid in loggedUsers))
+    {
+        console.log("User already logged in");
+        loggedUsers.push(userid);
+    }
 }
 
 exports.getusers = function(){
