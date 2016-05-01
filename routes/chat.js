@@ -51,9 +51,9 @@ router.post('/send', function(req, res) {
 socket_io.on('connection', function(socket){
     console.log('user conn');
 
-    message.limit100Messages(function(err, result){
+    message.limit100Messages(current_question, function(err, result){
         if (err) throw err;
-        socket.emit('question1-output',result.reverse());
+        socket.emit(current_question+'-output',result.reverse());
     });
 
     socket.on('input', function(err, data){

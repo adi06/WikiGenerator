@@ -5,8 +5,8 @@ dbCon.getConnection(function(err, db){
 });
 
 //limit to 100 messages
-exports.limit100Messages = function(callback){
-	myCollection.find({"question":"question1"}).limit(20).sort({_id: -1}).toArray(function(err, res1){
+exports.limit100Messages = function(current_question, callback){
+	myCollection.find({"question":current_question}).limit(20).sort({_id: -1}).toArray(function(err, res1){
 	if(err) throw err;
 	return callback(null, res1);
 	});
