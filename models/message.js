@@ -42,16 +42,25 @@ exports.addMessage = function(msg, callback) {
 //like processing
 exports.processLikes = function(data, callback){
 	var ObjectId = require('mongodb').ObjectID;
-	var count;
-	var msg;
+	var add_status = false;
 
 	myCollection.findOneAndUpdate(
 		{$and : [{"_id" : ObjectId(data.messageID)}, {"likedPeople" : {$nin:[data.username]}}]},
 		{ $inc: { like: 1}, $push : {likedPeople: data.username}},
-		{projection :{ "_id":1, "like":1, "question":1, "username":1}}
+		{new : true},
+		function(err, present){
+			if(present.value!=null){
+				add_status = true;
+			}
+		}
 	);
 
-	callback(null, data);
+	myCollection.find({"_id" : ObjectId(data.messageID)}).toArray(function(err,dat){
+		if(err) throw err;
+		data.likedPeople = dat[0].likedPeople;
+		data.add_status = add_status;
+		callback(null, data);
+	});
 };
 
 
