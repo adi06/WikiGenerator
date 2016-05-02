@@ -149,3 +149,7 @@ body {
     border-color: #eee;
     background-color: #eee;
 }
+
+.welcome-msg{
+    color: white;
+}
