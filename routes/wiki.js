@@ -81,14 +81,15 @@ router.get('/latest/:question', function (req, res) {
         req.session.news = news;
         req.session.comments = comments;
         req.session.suggestion = suggestion;
-        req.session.author = author;
+        req.session.authors = authors;
 
         res.json({
             "description": description,
             "history": history,
             "news": news,
             "comments": comments,
-            "suggestion": suggestion
+            "suggestion": suggestion,
+            "authors": authors
         });
     });
 });
