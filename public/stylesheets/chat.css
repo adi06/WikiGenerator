@@ -287,3 +287,6 @@ div.question-block p{
     transform: translateY(-80%);
 }
 
+a:hover{
+    cursor: pointer;
+}
