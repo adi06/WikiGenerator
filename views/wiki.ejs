@@ -9,11 +9,13 @@
       <script src="/javascripts/wiki.js"></script>
       <script type='text/javascript'>
           $(window).load(function(){
+              var auth = <%-JSON.stringify(authors)%>;
               var contents = $('.wiki-content').html();
               $('.wiki-content').blur(function() {
                   if (contents!=$(this).html()){
                       contents = $(this).html();
-                      //alert(contents);
+                    console.log(auth);
+
                   }
               });
           });
@@ -34,7 +36,7 @@
             <h3>Description</h3>
             <ul>
               <% description.forEach(function(desc){ %>
-            <li><p class="wiki-content" contenteditable="true"><%= desc %></p></li>
+              <li><p id = "<%= desc[0]%>" class="wiki-content" contenteditable="true"><%= desc[1] %></p></li>
               <% }); %>
             </ul>
             <h3>History</h3>
@@ -65,7 +67,7 @@
         </div>
       </div>
     </div>
-    <div><%= authors%>></div>
+    <div></div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
   </body>

@@ -11,7 +11,8 @@ router.get('/', function (req, res) {
         "history": req.session.history,
         "news": req.session.news,
         "comments": req.session.comments,
-        "suggestion": req.session.suggestion
+        "suggestion": req.session.suggestion,
+        "authors": req.session.authors
     });
 });
 //TODO
@@ -89,7 +90,7 @@ router.get('/latest/:question', function (req, res) {
             "news": news,
             "comments": comments,
             "suggestion": suggestion,
-            "authors": authors
+            "authors": [authors]
         });
     });
 });
