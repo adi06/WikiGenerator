@@ -30,10 +30,6 @@ var message_side;
                var loggeduser  = $('.username').val();
                if(loggeduser!=user) {
                    $val = $('#count' + _this.id).html();
-                   $('#count' + _this.id).html(function (i, val) {
-                       return +val + 1
-                   });
-                   $val = $('#count' + _this.id).html();
                    notifyLike({messageID: _this.id, like: $val});
                }
                 });
@@ -75,7 +71,8 @@ var message_side;
                 type: 'POST',
                 url: '/api/chat/send',
                 data: {"msg" : text,
-                       "tag": tag_value},
+                       "tag": tag_value,
+                        "username": $('.username').val()},
                 success: function(data)
                 {
                     console.log('received msg',data);
@@ -114,8 +111,8 @@ var message_side;
 
         //get likes
         socket.on(qn_listener+'-liked', function(data){
-            var current_user = $('.username').val();
-            $('#count'+ data.messageID).html(data.server_like);
+            var curr_likes = parseInt(data.server_like)+1;
+            $('#count'+ data.messageID).text(curr_likes);
         });
 
         //tag clicks
