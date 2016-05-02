@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    $('#submit').prop('disabled',true);
 
     $('#submit').click(function() {
         $.ajax({
@@ -14,9 +15,12 @@ $(document).ready(function () {
     });
 
     $('.media').click(function(){
+        $('#submit').prop('disabled',false);
         selected_qn = this.id;
+        $('.media.back-change').removeClass('back-change');
         $('#'+this.id).toggleClass('back-change');
     });
-});/**
+});
+/**
  * Created by karth on 4/18/2016.
  */
