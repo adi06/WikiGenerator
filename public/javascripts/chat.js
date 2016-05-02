@@ -112,7 +112,9 @@ var message_side;
         //get likes
         socket.on(qn_listener+'-liked', function(data){
             var curr_likes = parseInt(data.server_like)+1;
-            $('#count'+ data.messageID).text(curr_likes);
+            $.ajax(
+                $('#count'+ data.messageID).hide().html(curr_likes).fadeIn('fast')
+            );
         });
 
         //tag clicks
