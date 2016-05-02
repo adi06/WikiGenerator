@@ -33,7 +33,7 @@ router.post('/', function(req, res){
 
 router.post('/send', function(req, res) {
     var msg_req = {
-        "username" : req.body.username,
+        "username" : req.session.username,
         "question" : current_question,
         "qncontent": question_content,
         "message" : req.body.msg,
